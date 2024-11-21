@@ -1,0 +1,9 @@
+//npx create-next-app@latest ./
+TypeScript -> Yes
+ESLint -> Yes
+Tailwind CSS-> Yes
+src/directory -> No
+App Router -> Yes
+Turbopack -> Yes
+import alian -> No
+
