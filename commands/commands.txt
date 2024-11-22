@@ -7,3 +7,129 @@ App Router -> Yes
 Turbopack -> Yes
 import alian -> No
 
+//setup git and make first initial commit
+
+//rules to be applied in .eslintrc.json
+npm install eslint-config-standard
+
+->Add standard to extends like the following code in .eslintrc.json
+{
+  "extends": ["next/core-web-vitals", "next/typescript", "standard"]
+}
+
+//install eslint plugin
+npm install eslint-plugin-tailwindcss
+->Add standard to extends like the following code in .eslintrc.json
+{
+  "extends": ["next/core-web-vitals", "next/typescript", "standard","plugin:tailwindcss/recommended"]
+}
+
+//install prettier to the project
+npm install eslint-config-prettier
+->Add standard to extends like the following code in .eslintrc.json
+{
+  "extends": ["next/core-web-vitals", "next/typescript", "standard","plugin:tailwindcss/recommended","prettier"]
+}
+npm install prettier
+
+//to make prettier and eslint work together
+-> create a folder called .vscode and create a file called settings.json
+
+Add the following content
+->
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.addMissingImports": "explicit"
+  },
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "prettier.semi": true,
+  "prettier.singleQuote": false,
+  "prettier.jsxSingleQuote": false,
+  "prettier.trailingComma": "es5",
+  "prettier.arrowParens": "always",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.exclude": {
+    // "**/.vscode": true,
+    "**/.next": true,
+    "**/node_modules": true,
+    "next-env.d.ts": true
+    // "**/.git": true,
+    // "**/.svn": true,
+    // "**/.hg": true,
+    // "**/CVS": true,
+    // "**/.DS_Store": true,
+    // "**/Thumbs.db": true
+  },
+  "files.associations": {
+    "globals.css": "tailwindcss"
+  }
+}
+
+-> install extensions prettier, eslint and prettier ESLint
+
+//To put imports in order
+npm install eslint-plugin-import --save-dev
+-> Add plugins and additional rules to .eslintrc.json like this.
+This rules are industrial level.
+{
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "standard",
+    "plugin:tailwindcss/recommended",
+    "prettier"
+  ],
+  "plugins": ["import"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "index",
+          "object"
+        ],
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "@app/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
+}
